@@ -1,0 +1,61 @@
+import java.util.*;
+public class Solution {
+    public static ArrayList<ArrayList<Integer>> kTop(int[] arr, int n, int k) {
+        // code here
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        Map<Integer,Integer> map = new HashMap<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->{
+            if(map.get(a)!=map.get(b))
+                return map.get(b) - map.get(a);
+            else
+                return a - b;
+        });
+        
+        ArrayList<Integer> temp = new ArrayList<>();
+        for(int ele:arr){
+            map.put(ele,map.getOrDefault(ele,0)+1);
+            maxHeap = new PriorityQueue<>((a,b)->{
+                if(map.get(a)!=map.get(b))
+                    return map.get(b) - map.get(a);
+                else
+                    return a - b;
+            });
+            for(int key:map.keySet()){
+                maxHeap.add(key);
+            }
+            int tempK = k;
+            temp.clear();
+            while(tempK>0 && !maxHeap.isEmpty()){
+                int a = maxHeap.poll();
+                temp.add(a);
+                tempK--;
+            }
+            res.add(new ArrayList<>(temp));
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int N = scanner.nextInt();
+      
+        int K = scanner.nextInt();
+
+        int[] arr = new int[N];
+   
+        for (int i = 0; i < N; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        ArrayList<ArrayList<Integer>> result = kTop(arr, N, K);
+
+    
+        for (ArrayList<Integer> list : result) {
+            for (int num : list) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+        
