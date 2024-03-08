@@ -25,7 +25,7 @@ In the main method, a sample demonstration showcases the usage of the betterStri
 
 ## Output
 
-![Reference Image](#100DaysOfCode/Day1/s1.png)
+![Reference Image](/Day1/s1.png)
 
 ## Link
 <https://auth.geeksforgeeks.org/user/asantamarptz2>
